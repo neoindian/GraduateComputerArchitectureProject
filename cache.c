@@ -57,9 +57,11 @@
 #include "misc.h"
 #include "machine.h"
 #include "cache.h"
+#include "bloom.h"
 
 /* cache prefetch config macro*/
 #define MAXPREFETCHLEVEL 4 
+BLOOM *bloom;
 
 /* cache access macros */
 #define CACHE_TAG(cp, addr)	((addr) >> (cp)->tag_shift)
@@ -275,6 +277,12 @@ cache_create(char *name,		/* name of the cache */
 					   tick_t now,int prefetchFlag),
 	     unsigned int hit_latency)	/* latency in cycles for a hit */
 {
+   if(!(bloom=bloom_create(2500000, 2, sax_hash, sdbm_hash))) {
+		fprintf(stderr, "ERROR: Could not create bloom filter\n");
+		return EXIT_FAILURE;
+   }
+
+
   struct cache_t *cp;
   struct cache_blk_t *blk;
   int i, j, bindex;

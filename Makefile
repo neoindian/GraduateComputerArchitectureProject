@@ -279,7 +279,7 @@ CFLAGS = $(MFLAGS) $(FFLAGS) $(OFLAGS) $(BINUTILS_INC) $(BINUTILS_LIB)
 #
 SRCS =	main.c sim-fast.c sim-safe.c sim-cache.c sim-profile.c \
 	sim-eio.c sim-bpred.c sim-cheetah.c sim-outorder.c \
-	memory.c regs.c cache.c bpred.c ptrace.c eventq.c \
+	memory.c regs.c bloom.c cache.c bpred.c ptrace.c eventq.c \
 	resource.c endian.c dlite.c symbol.c eval.c options.c range.c \
 	eio.c stats.c endian.c misc.c \
 	target-pisa/pisa.c target-pisa/loader.c target-pisa/syscall.c \
@@ -387,11 +387,11 @@ sim-bpred$(EEXT):	sysprobe$(EEXT) sim-bpred.$(OEXT) bpred.$(OEXT) $(OBJS) libexo
 sim-cheetah$(EEXT):	sysprobe$(EEXT) sim-cheetah.$(OEXT) $(OBJS) libcheetah/libcheetah.$(LEXT) libexo/libexo.$(LEXT)
 	$(CC) -o sim-cheetah$(EEXT) $(CFLAGS) sim-cheetah.$(OEXT) $(OBJS) libcheetah/libcheetah.$(LEXT) libexo/libexo.$(LEXT) $(MLIBS)
 
-sim-cache$(EEXT):	sysprobe$(EEXT) sim-cache.$(OEXT) cache.$(OEXT) $(OBJS) libexo/libexo.$(LEXT)
-	$(CC) -o sim-cache$(EEXT) $(CFLAGS) sim-cache.$(OEXT) cache.$(OEXT) $(OBJS) libexo/libexo.$(LEXT) $(MLIBS)
+sim-cache$(EEXT):	sysprobe$(EEXT) sim-cache.$(OEXT) bloom.$(OEXT) cache.$(OEXT) $(OBJS) libexo/libexo.$(LEXT)
+	$(CC) -o sim-cache$(EEXT) $(CFLAGS) sim-cache.$(OEXT) bloom.$(OEXT) cache.$(OEXT) $(OBJS) libexo/libexo.$(LEXT) $(MLIBS)
 
-sim-outorder$(EEXT):	sysprobe$(EEXT) sim-outorder.$(OEXT) cache.$(OEXT) bpred.$(OEXT) resource.$(OEXT) ptrace.$(OEXT) $(OBJS) libexo/libexo.$(LEXT)
-	$(CC) -o sim-outorder$(EEXT) $(CFLAGS) sim-outorder.$(OEXT) cache.$(OEXT) bpred.$(OEXT) resource.$(OEXT) ptrace.$(OEXT) $(OBJS) libexo/libexo.$(LEXT) $(MLIBS)
+sim-outorder$(EEXT):	sysprobe$(EEXT) sim-outorder.$(OEXT) bloom.$(OEXT) cache.$(OEXT) bpred.$(OEXT) resource.$(OEXT) ptrace.$(OEXT) $(OBJS) libexo/libexo.$(LEXT)
+	$(CC) -o sim-outorder$(EEXT) $(CFLAGS) sim-outorder.$(OEXT) bloom.$(OEXT) cache.$(OEXT) bpred.$(OEXT) resource.$(OEXT) ptrace.$(OEXT) $(OBJS) libexo/libexo.$(LEXT) $(MLIBS)
 
 exo libexo/libexo.$(LEXT): sysprobe$(EEXT)
 	cd libexo $(CS) \
@@ -475,7 +475,7 @@ sim-fast.$(OEXT): options.h stats.h eval.h loader.h syscall.h dlite.h sim.h
 sim-safe.$(OEXT): host.h misc.h machine.h machine.def regs.h memory.h
 sim-safe.$(OEXT): options.h stats.h eval.h loader.h syscall.h dlite.h sim.h
 sim-cache.$(OEXT): host.h misc.h machine.h machine.def regs.h memory.h
-sim-cache.$(OEXT): options.h stats.h eval.h cache.h loader.h syscall.h
+sim-cache.$(OEXT): options.h stats.h eval.h cache.h loader.h syscall.h bloom.h
 sim-cache.$(OEXT): dlite.h sim.h
 sim-profile.$(OEXT): host.h misc.h machine.h machine.def regs.h memory.h
 sim-profile.$(OEXT): options.h stats.h eval.h loader.h syscall.h dlite.h
@@ -490,14 +490,14 @@ sim-cheetah.$(OEXT): host.h misc.h machine.h machine.def regs.h memory.h
 sim-cheetah.$(OEXT): options.h stats.h eval.h loader.h syscall.h dlite.h
 sim-cheetah.$(OEXT): libcheetah/libcheetah.h sim.h
 sim-outorder.$(OEXT): host.h misc.h machine.h machine.def regs.h memory.h
-sim-outorder.$(OEXT): options.h stats.h eval.h cache.h loader.h syscall.h
+sim-outorder.$(OEXT): options.h stats.h eval.h bloom.h cache.h loader.h syscall.h
 sim-outorder.$(OEXT): bpred.h resource.h bitmap.h ptrace.h range.h dlite.h
 sim-outorder.$(OEXT): sim.h
 memory.$(OEXT): host.h misc.h machine.h machine.def options.h stats.h eval.h
 memory.$(OEXT): memory.h
 regs.$(OEXT): host.h misc.h machine.h machine.def loader.h regs.h memory.h
 regs.$(OEXT): options.h stats.h eval.h
-cache.$(OEXT): host.h misc.h machine.h machine.def cache.h memory.h options.h
+cache.$(OEXT): host.h misc.h machine.h machine.def bloom.h cache.h memory.h options.h
 cache.$(OEXT): stats.h eval.h
 bpred.$(OEXT): host.h misc.h machine.h machine.def bpred.h stats.h eval.h
 ptrace.$(OEXT): host.h misc.h machine.h machine.def range.h ptrace.h
