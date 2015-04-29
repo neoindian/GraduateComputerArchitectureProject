@@ -99,7 +99,7 @@ BITMAP_TYPE	bitmap.h	62;"	d
 BITMAP_XOR	bitmap.h	96;"	d
 BLOB_MODE	libexo/exolex.c	498;"	d	file:
 BLOB_TAIL_SIZE	eio.c	488;"	d	file:
-BOUND_POS	cache.c	140;"	d	file:
+BOUND_POS	cache.c	143;"	d	file:
 BPRED_H	bpred.h	53;"	d
 BPred2Level	bpred.h	/^  BPred2Level,			\/* 2-level correlating pred w\/2-bit counters *\/$/;"	e	enum:bpred_class
 BPred2bit	bpred.h	/^  BPred2bit,			\/* 2-bit saturating cntr pred (dir mapped) *\/$/;"	e	enum:bpred_class
@@ -127,24 +127,24 @@ BuildMask	tests/src/anagram.c	/^void BuildMask(char * pchPhrase) {$/;"	f
 BuildWord	tests-alpha/src/anagram.c	/^void BuildWord(char * pchWord) {$/;"	f
 BuildWord	tests-pisa/src/anagram.c	/^void BuildWord(char * pchWord) {$/;"	f
 BuildWord	tests/src/anagram.c	/^void BuildWord(char * pchWord) {$/;"	f
-CACHE_BADDR	cache.c	68;"	d	file:
-CACHE_BCOPY	cache.c	97;"	d	file:
-CACHE_BINDEX	cache.c	73;"	d	file:
-CACHE_BLK	cache.c	64;"	d	file:
+CACHE_BADDR	cache.c	71;"	d	file:
+CACHE_BCOPY	cache.c	100;"	d	file:
+CACHE_BINDEX	cache.c	76;"	d	file:
+CACHE_BLK	cache.c	67;"	d	file:
 CACHE_BLK_DIRTY	cache.h	110;"	d
 CACHE_BLK_VALID	cache.h	109;"	d
-CACHE_BYTE	cache.c	88;"	d	file:
-CACHE_DOUBLE	cache.c	84;"	d	file:
-CACHE_FLOAT	cache.c	85;"	d	file:
+CACHE_BYTE	cache.c	91;"	d	file:
+CACHE_DOUBLE	cache.c	87;"	d	file:
+CACHE_FLOAT	cache.c	88;"	d	file:
 CACHE_H	cache.h	53;"	d
-CACHE_HALF	cache.c	87;"	d	file:
-CACHE_HASH	cache.c	93;"	d	file:
+CACHE_HALF	cache.c	90;"	d	file:
+CACHE_HASH	cache.c	96;"	d	file:
 CACHE_HIGHLY_ASSOC	cache.h	99;"	d
-CACHE_MK_BADDR	cache.c	69;"	d	file:
-CACHE_SET	cache.c	63;"	d	file:
-CACHE_TAG	cache.c	62;"	d	file:
-CACHE_TAGSET	cache.c	65;"	d	file:
-CACHE_WORD	cache.c	86;"	d	file:
+CACHE_MK_BADDR	cache.c	72;"	d	file:
+CACHE_SET	cache.c	66;"	d	file:
+CACHE_TAG	cache.c	65;"	d	file:
+CACHE_TAGSET	cache.c	68;"	d	file:
+CACHE_WORD	cache.c	89;"	d	file:
 CAT	sysprobe.c	78;"	d	file:
 CC	Makefile	/^CC = gcc$/;"	m
 CC	tests-alpha/src/Makefile	/^CC=cc$/;"	m
@@ -176,8 +176,8 @@ CONNECT	sim-eio.c	454;"	d	file:
 CONNECT	sim-eio.c	570;"	d	file:
 CONNECT	sim-fast.c	331;"	d	file:
 CONNECT	sim-fast.c	387;"	d	file:
-CONNECT	sim-outorder.c	3811;"	d	file:
-CONNECT	sim-outorder.c	4491;"	d	file:
+CONNECT	sim-outorder.c	3854;"	d	file:
+CONNECT	sim-outorder.c	4534;"	d	file:
 CONNECT	sim-profile.c	702;"	d	file:
 CONNECT	sim-safe.c	315;"	d	file:
 CONNECT	target-alpha/alpha.c	104;"	d	file:
@@ -197,7 +197,7 @@ CPC	sim-bpred.c	371;"	d	file:
 CPC	sim-cache.c	607;"	d	file:
 CPC	sim-eio.c	325;"	d	file:
 CPC	sim-fast.c	231;"	d	file:
-CPC	sim-outorder.c	3404;"	d	file:
+CPC	sim-outorder.c	3447;"	d	file:
 CPC	sim-profile.c	567;"	d	file:
 CPC	sim-safe.c	194;"	d	file:
 CR0	syscall.c	164;"	d	file:
@@ -227,14 +227,14 @@ CR3	target-alpha/syscall.c	167;"	d	file:
 CR3	target-alpha/syscall.c	220;"	d	file:
 CR3	target-pisa/syscall.c	133;"	d	file:
 CR3	target-pisa/syscall.c	186;"	d	file:
-CREATE_VECTOR	sim-outorder.c	2065;"	d	file:
-CREATE_VECTOR_RT	sim-outorder.c	2070;"	d	file:
+CREATE_VECTOR	sim-outorder.c	2108;"	d	file:
+CREATE_VECTOR_RT	sim-outorder.c	2113;"	d	file:
 CS	Makefile	/^CS = ;$/;"	m
-CVLINK_INIT	sim-outorder.c	2047;"	d	file:
+CVLINK_INIT	sim-outorder.c	2090;"	d	file:
 CVLINK_NULL	sim-outorder.c	/^static struct CV_link CVLINK_NULL = { NULL, 0 };$/;"	v	typeref:struct:CV_link	file:
-CV_BMAP_SZ	sim-outorder.c	2050;"	d	file:
+CV_BMAP_SZ	sim-outorder.c	2093;"	d	file:
 CV_link	sim-outorder.c	/^struct CV_link {$/;"	s	file:
-C_BMAP_SZ	sim-outorder.c	2864;"	d	file:
+C_BMAP_SZ	sim-outorder.c	2907;"	d	file:
 Cdecl	tests-alpha/src/anagram.c	182;"	d	file:
 Cdecl	tests-pisa/src/anagram.c	182;"	d	file:
 Cdecl	tests/src/anagram.c	182;"	d	file:
@@ -250,9 +250,9 @@ DECLARE_FAULT	sim-eio.c	455;"	d	file:
 DECLARE_FAULT	sim-eio.c	456;"	d	file:
 DECLARE_FAULT	sim-eio.c	571;"	d	file:
 DECLARE_FAULT	sim-fast.c	388;"	d	file:
-DECLARE_FAULT	sim-outorder.c	3817;"	d	file:
-DECLARE_FAULT	sim-outorder.c	4492;"	d	file:
-DECLARE_FAULT	sim-outorder.c	4493;"	d	file:
+DECLARE_FAULT	sim-outorder.c	3860;"	d	file:
+DECLARE_FAULT	sim-outorder.c	4535;"	d	file:
+DECLARE_FAULT	sim-outorder.c	4536;"	d	file:
 DECLARE_FAULT	sim-profile.c	703;"	d	file:
 DECLARE_FAULT	sim-safe.c	316;"	d	file:
 DEFINST	machine.c	102;"	d	file:
@@ -269,8 +269,8 @@ DEFINST	sim-eio.c	447;"	d	file:
 DEFINST	sim-eio.c	563;"	d	file:
 DEFINST	sim-fast.c	327;"	d	file:
 DEFINST	sim-fast.c	359;"	d	file:
-DEFINST	sim-outorder.c	3794;"	d	file:
-DEFINST	sim-outorder.c	4484;"	d	file:
+DEFINST	sim-outorder.c	3837;"	d	file:
+DEFINST	sim-outorder.c	4527;"	d	file:
 DEFINST	sim-profile.c	695;"	d	file:
 DEFINST	sim-safe.c	308;"	d	file:
 DEFINST	target-alpha/alpha.c	102;"	d	file:
@@ -301,8 +301,8 @@ DEFLINK	sim-eio.c	451;"	d	file:
 DEFLINK	sim-eio.c	567;"	d	file:
 DEFLINK	sim-fast.c	329;"	d	file:
 DEFLINK	sim-fast.c	384;"	d	file:
-DEFLINK	sim-outorder.c	3802;"	d	file:
-DEFLINK	sim-outorder.c	4488;"	d	file:
+DEFLINK	sim-outorder.c	3845;"	d	file:
+DEFLINK	sim-outorder.c	4531;"	d	file:
 DEFLINK	sim-profile.c	699;"	d	file:
 DEFLINK	sim-safe.c	312;"	d	file:
 DEFLINK	target-alpha/alpha.c	103;"	d	file:
@@ -318,25 +318,25 @@ DEFLINK	target-pisa/pisa.c	71;"	d	file:
 DEFLINK	target-pisa/pisa.c	80;"	d	file:
 DEFLINK	target-pisa/pisa.c	89;"	d	file:
 DEFLINK	target-pisa/pisa.h	236;"	d
-DFCC	sim-outorder.c	3371;"	d	file:
-DFPCR	sim-outorder.c	3383;"	d	file:
-DFPR	sim-outorder.c	3380;"	d	file:
-DFPR_D	sim-outorder.c	3366;"	d	file:
-DFPR_F	sim-outorder.c	3365;"	d	file:
-DFPR_L	sim-outorder.c	3364;"	d	file:
-DGPR	sim-outorder.c	3360;"	d	file:
-DGPR	sim-outorder.c	3377;"	d	file:
-DGPR_D	sim-outorder.c	3361;"	d	file:
-DHI	sim-outorder.c	3369;"	d	file:
+DFCC	sim-outorder.c	3414;"	d	file:
+DFPCR	sim-outorder.c	3426;"	d	file:
+DFPR	sim-outorder.c	3423;"	d	file:
+DFPR_D	sim-outorder.c	3409;"	d	file:
+DFPR_F	sim-outorder.c	3408;"	d	file:
+DFPR_L	sim-outorder.c	3407;"	d	file:
+DGPR	sim-outorder.c	3403;"	d	file:
+DGPR	sim-outorder.c	3420;"	d	file:
+DGPR_D	sim-outorder.c	3404;"	d	file:
+DHI	sim-outorder.c	3412;"	d	file:
 DIFF	Makefile	/^DIFF = diff$/;"	m
 DLITE_H	dlite.h	110;"	d
 DLITE_PROMPT	dlite.c	2222;"	d	file:
-DLO	sim-outorder.c	3370;"	d	file:
-DNA	sim-outorder.c	3355;"	d	file:
+DLO	sim-outorder.c	3413;"	d	file:
+DNA	sim-outorder.c	3398;"	d	file:
 DOTSEEN	misc.c	444;"	d	file:
-DTMP	sim-outorder.c	3372;"	d	file:
-DTMP	sim-outorder.c	3385;"	d	file:
-DUNIQ	sim-outorder.c	3384;"	d	file:
+DTMP	sim-outorder.c	3415;"	d	file:
+DTMP	sim-outorder.c	3428;"	d	file:
+DUNIQ	sim-outorder.c	3427;"	d	file:
 Debug	tests-alpha/src/anagram.c	188;"	d	file:
 Debug	tests-alpha/src/anagram.c	190;"	d	file:
 Debug	tests-pisa/src/anagram.c	188;"	d	file:
@@ -483,8 +483,8 @@ FCC	sim-bpred.c	392;"	d	file:
 FCC	sim-cache.c	628;"	d	file:
 FCC	sim-eio.c	346;"	d	file:
 FCC	sim-fast.c	252;"	d	file:
-FCC	sim-outorder.c	3468;"	d	file:
-FCC	sim-outorder.c	3518;"	d	file:
+FCC	sim-outorder.c	3511;"	d	file:
+FCC	sim-outorder.c	3561;"	d	file:
 FCC	sim-profile.c	588;"	d	file:
 FCC	sim-safe.c	215;"	d	file:
 FD	target-pisa/pisa.h	315;"	d
@@ -516,42 +516,42 @@ FPCR	sim-bpred.c	404;"	d	file:
 FPCR	sim-cache.c	640;"	d	file:
 FPCR	sim-eio.c	358;"	d	file:
 FPCR	sim-fast.c	264;"	d	file:
-FPCR	sim-outorder.c	3502;"	d	file:
+FPCR	sim-outorder.c	3545;"	d	file:
 FPCR	sim-profile.c	600;"	d	file:
 FPCR	sim-safe.c	227;"	d	file:
 FPR	sim-bpred.c	400;"	d	file:
 FPR	sim-cache.c	636;"	d	file:
 FPR	sim-eio.c	354;"	d	file:
 FPR	sim-fast.c	260;"	d	file:
-FPR	sim-outorder.c	3490;"	d	file:
+FPR	sim-outorder.c	3533;"	d	file:
 FPR	sim-profile.c	596;"	d	file:
 FPR	sim-safe.c	223;"	d	file:
 FPR_D	sim-bpred.c	384;"	d	file:
 FPR_D	sim-cache.c	620;"	d	file:
 FPR_D	sim-eio.c	338;"	d	file:
 FPR_D	sim-fast.c	244;"	d	file:
-FPR_D	sim-outorder.c	3440;"	d	file:
+FPR_D	sim-outorder.c	3483;"	d	file:
 FPR_D	sim-profile.c	580;"	d	file:
 FPR_D	sim-safe.c	207;"	d	file:
 FPR_F	sim-bpred.c	382;"	d	file:
 FPR_F	sim-cache.c	618;"	d	file:
 FPR_F	sim-eio.c	336;"	d	file:
 FPR_F	sim-fast.c	242;"	d	file:
-FPR_F	sim-outorder.c	3432;"	d	file:
+FPR_F	sim-outorder.c	3475;"	d	file:
 FPR_F	sim-profile.c	578;"	d	file:
 FPR_F	sim-safe.c	205;"	d	file:
 FPR_L	sim-bpred.c	380;"	d	file:
 FPR_L	sim-cache.c	616;"	d	file:
 FPR_L	sim-eio.c	334;"	d	file:
 FPR_L	sim-fast.c	240;"	d	file:
-FPR_L	sim-outorder.c	3424;"	d	file:
+FPR_L	sim-outorder.c	3467;"	d	file:
 FPR_L	sim-profile.c	576;"	d	file:
 FPR_L	sim-safe.c	203;"	d	file:
 FPR_Q	sim-bpred.c	398;"	d	file:
 FPR_Q	sim-cache.c	634;"	d	file:
 FPR_Q	sim-eio.c	352;"	d	file:
 FPR_Q	sim-fast.c	258;"	d	file:
-FPR_Q	sim-outorder.c	3482;"	d	file:
+FPR_Q	sim-outorder.c	3525;"	d	file:
 FPR_Q	sim-profile.c	594;"	d	file:
 FPR_Q	sim-safe.c	221;"	d	file:
 FS	target-pisa/pisa.h	313;"	d
@@ -559,12 +559,12 @@ FT	target-pisa/pisa.h	314;"	d
 FUClamd_NA	machine.h	/^  FUClamd_NA = 0,	\/* inst does not use a functional unit *\/$/;"	e	enum:md_fu_class
 FUClamd_NA	target-alpha/alpha.h	/^  FUClamd_NA = 0,	\/* inst does not use a functional unit *\/$/;"	e	enum:md_fu_class
 FUClass_NA	target-pisa/pisa.h	/^  FUClass_NA = 0,	\/* inst does not use a functional unit *\/$/;"	e	enum:md_fu_class
-FU_FPALU_INDEX	sim-outorder.c	249;"	d	file:
-FU_FPMULT_INDEX	sim-outorder.c	250;"	d	file:
-FU_IALU_INDEX	sim-outorder.c	246;"	d	file:
-FU_IMULT_INDEX	sim-outorder.c	247;"	d	file:
-FU_MEMPORT_INDEX	sim-outorder.c	248;"	d	file:
-F_BMAP_SZ	sim-outorder.c	2859;"	d	file:
+FU_FPALU_INDEX	sim-outorder.c	256;"	d	file:
+FU_FPMULT_INDEX	sim-outorder.c	257;"	d	file:
+FU_IALU_INDEX	sim-outorder.c	253;"	d	file:
+FU_IMULT_INDEX	sim-outorder.c	254;"	d	file:
+FU_MEMPORT_INDEX	sim-outorder.c	255;"	d	file:
+F_BMAP_SZ	sim-outorder.c	2902;"	d	file:
 F_CALL	machine.h	288;"	d
 F_CALL	target-alpha/alpha.h	288;"	d
 F_CALL	target-pisa/pisa.h	295;"	d
@@ -654,20 +654,20 @@ GPR	sim-bpred.c	374;"	d	file:
 GPR	sim-cache.c	610;"	d	file:
 GPR	sim-eio.c	328;"	d	file:
 GPR	sim-fast.c	234;"	d	file:
-GPR	sim-outorder.c	3410;"	d	file:
+GPR	sim-outorder.c	3453;"	d	file:
 GPR	sim-profile.c	570;"	d	file:
 GPR	sim-safe.c	197;"	d	file:
 GetPhrase	tests-alpha/src/anagram.c	/^char * GetPhrase(char * pch) {$/;"	f
 GetPhrase	tests-pisa/src/anagram.c	/^char * GetPhrase(char * pch) {$/;"	f
 GetPhrase	tests/src/anagram.c	/^char * GetPhrase(char * pch) {$/;"	f
-HASH_ADDR	sim-outorder.c	3029;"	d	file:
+HASH_ADDR	sim-outorder.c	3072;"	d	file:
 HDR	libexo/Makefile	/^HDR	= libexo.h$/;"	m
 HDRS	Makefile	/^HDRS =	syscall.h memory.h regs.h sim.h loader.h cache.h bpred.h ptrace.h \\$/;"	m
 HI	sim-bpred.c	389;"	d	file:
 HI	sim-cache.c	625;"	d	file:
 HI	sim-eio.c	343;"	d	file:
 HI	sim-fast.c	249;"	d	file:
-HI	sim-outorder.c	3452;"	d	file:
+HI	sim-outorder.c	3495;"	d	file:
 HI	sim-profile.c	585;"	d	file:
 HI	sim-safe.c	212;"	d	file:
 HIBITL	misc.c	391;"	d	file:
@@ -689,8 +689,8 @@ HaltProcessing	tests/src/anagram.c	181;"	d	file:
 Head	cache.c	/^enum list_loc_t { Head, Tail };$/;"	e	enum:list_loc_t	file:
 IACOMPRESS	sim-cache.c	245;"	d	file:
 IACOMPRESS	sim-cache.c	250;"	d	file:
-IACOMPRESS	sim-outorder.c	229;"	d	file:
-IACOMPRESS	sim-outorder.c	234;"	d	file:
+IACOMPRESS	sim-outorder.c	236;"	d	file:
+IACOMPRESS	sim-outorder.c	241;"	d	file:
 IEEEFP_DBL_EXPONENT	machine.h	326;"	d
 IEEEFP_DBL_EXPONENT	target-alpha/alpha.h	326;"	d
 IEEEFP_DBL_FRACTION	machine.h	327;"	d
@@ -718,8 +718,8 @@ IR	sim-outorder.c	/^  md_inst_t IR;				\/* inst register *\/$/;"	m	struct:fetch_
 IR	sim-outorder.c	/^  md_inst_t IR;			\/* instruction bits *\/$/;"	m	struct:RUU_station	file:
 ISCOMPRESS	sim-cache.c	247;"	d	file:
 ISCOMPRESS	sim-cache.c	251;"	d	file:
-ISCOMPRESS	sim-outorder.c	231;"	d	file:
-ISCOMPRESS	sim-outorder.c	235;"	d	file:
+ISCOMPRESS	sim-outorder.c	238;"	d	file:
+ISCOMPRESS	sim-outorder.c	242;"	d	file:
 IS_IEEEFP_DBL_NAN	machine.h	328;"	d
 IS_IEEEFP_DBL_NAN	target-alpha/alpha.h	328;"	d
 IntALU	machine.h	/^  IntALU,		\/* integer ALU *\/$/;"	e	enum:md_fu_class
@@ -751,7 +751,7 @@ LO	sim-bpred.c	391;"	d	file:
 LO	sim-cache.c	627;"	d	file:
 LO	sim-eio.c	345;"	d	file:
 LO	sim-fast.c	251;"	d	file:
-LO	sim-outorder.c	3460;"	d	file:
+LO	sim-outorder.c	3503;"	d	file:
 LO	sim-profile.c	587;"	d	file:
 LO	sim-safe.c	214;"	d	file:
 LOADER_H	loader.h	53;"	d
@@ -780,6 +780,7 @@ MAXCAND	tests-pisa/src/anagram.c	155;"	d	file:
 MAXCAND	tests/src/anagram.c	155;"	d	file:
 MAXDIGS	misc.c	449;"	d	file:
 MAXINT_VAL	target-pisa/pisa.h	336;"	d
+MAXPREFETCHLEVEL	cache.c	62;"	d	file:
 MAXSOL	tests-alpha/src/anagram.c	156;"	d	file:
 MAXSOL	tests-pisa/src/anagram.c	156;"	d	file:
 MAXSOL	tests/src/anagram.c	156;"	d	file:
@@ -788,19 +789,19 @@ MAXWORDS	tests-pisa/src/anagram.c	154;"	d	file:
 MAXWORDS	tests/src/anagram.c	154;"	d	file:
 MAX_ARGS	dlite.c	293;"	d	file:
 MAX_FILENAME_LEN	options.c	1197;"	d	file:
-MAX_IDEPS	sim-outorder.c	1472;"	d	file:
+MAX_IDEPS	sim-outorder.c	1515;"	d	file:
 MAX_INSTS_PER_CLASS	resource.h	61;"	d
 MAX_LINE_ARGS	options.c	1196;"	d	file:
-MAX_ODEPS	sim-outorder.c	1475;"	d	file:
+MAX_ODEPS	sim-outorder.c	1518;"	d	file:
 MAX_PCSTAT_VARS	sim-cache.c	108;"	d	file:
-MAX_PCSTAT_VARS	sim-outorder.c	223;"	d	file:
+MAX_PCSTAT_VARS	sim-outorder.c	230;"	d	file:
 MAX_PCSTAT_VARS	sim-profile.c	99;"	d	file:
 MAX_QUADS	tests-alpha/src/anagram.c	152;"	d	file:
 MAX_QUADS	tests-pisa/src/anagram.c	152;"	d	file:
 MAX_QUADS	tests/src/anagram.c	152;"	d	file:
 MAX_RES_CLASSES	resource.h	58;"	d
-MAX_RS_LINKS	sim-outorder.c	1403;"	d	file:
-MAX_STD_UNKNOWNS	sim-outorder.c	2528;"	d	file:
+MAX_RS_LINKS	sim-outorder.c	1446;"	d	file:
+MAX_STD_UNKNOWNS	sim-outorder.c	2571;"	d	file:
 MAX_STR	dlite.c	296;"	d	file:
 MAX_STREAMS	libexo/exolex.c	1795;"	d	file:
 MAX_VARS	options.c	1711;"	d	file:
@@ -1091,7 +1092,7 @@ OFLAGS	Makefile	/^OFLAGS = -O0 -g -Wall$/;"	m
 OFS	machine.h	309;"	d
 OFS	target-alpha/alpha.h	309;"	d
 OFS	target-pisa/pisa.h	330;"	d
-OPERANDS_READY	sim-outorder.c	1528;"	d	file:
+OPERANDS_READY	sim-outorder.c	1571;"	d	file:
 OPTIONS_H	options.h	53;"	d
 OP_MAX	machine.h	/^  OP_MAX	\/* number of opcodes + NA *\/$/;"	e	enum:md_opcode
 OP_MAX	target-alpha/alpha.h	/^  OP_MAX	\/* number of opcodes + NA *\/$/;"	e	enum:md_opcode
@@ -1721,28 +1722,28 @@ READ_BYTE	sim-bpred.c	414;"	d	file:
 READ_BYTE	sim-cache.c	660;"	d	file:
 READ_BYTE	sim-eio.c	368;"	d	file:
 READ_BYTE	sim-fast.c	274;"	d	file:
-READ_BYTE	sim-outorder.c	3541;"	d	file:
+READ_BYTE	sim-outorder.c	3584;"	d	file:
 READ_BYTE	sim-profile.c	610;"	d	file:
 READ_BYTE	sim-safe.c	237;"	d	file:
 READ_HALF	sim-bpred.c	416;"	d	file:
 READ_HALF	sim-cache.c	663;"	d	file:
 READ_HALF	sim-eio.c	370;"	d	file:
 READ_HALF	sim-fast.c	276;"	d	file:
-READ_HALF	sim-outorder.c	3543;"	d	file:
+READ_HALF	sim-outorder.c	3586;"	d	file:
 READ_HALF	sim-profile.c	612;"	d	file:
 READ_HALF	sim-safe.c	239;"	d	file:
 READ_QWORD	sim-bpred.c	421;"	d	file:
 READ_QWORD	sim-cache.c	670;"	d	file:
 READ_QWORD	sim-eio.c	375;"	d	file:
 READ_QWORD	sim-fast.c	281;"	d	file:
-READ_QWORD	sim-outorder.c	3548;"	d	file:
+READ_QWORD	sim-outorder.c	3591;"	d	file:
 READ_QWORD	sim-profile.c	617;"	d	file:
 READ_QWORD	sim-safe.c	244;"	d	file:
 READ_WORD	sim-bpred.c	418;"	d	file:
 READ_WORD	sim-cache.c	666;"	d	file:
 READ_WORD	sim-eio.c	372;"	d	file:
 READ_WORD	sim-fast.c	278;"	d	file:
-READ_WORD	sim-outorder.c	3545;"	d	file:
+READ_WORD	sim-outorder.c	3588;"	d	file:
 READ_WORD	sim-profile.c	614;"	d	file:
 READ_WORD	sim-safe.c	241;"	d	file:
 REGS_H	regs.h	53;"	d
@@ -1757,15 +1758,15 @@ ROUND_DOWN	misc.h	86;"	d
 ROUND_UP	misc.h	85;"	d
 RS	target-pisa/pisa.h	304;"	d
 RS	target-pisa/pisa.h	305;"	d
-RSLINK_FREE	sim-outorder.c	1751;"	d	file:
-RSLINK_FREE_LIST	sim-outorder.c	1760;"	d	file:
-RSLINK_INIT	sim-outorder.c	1726;"	d	file:
-RSLINK_IS_NULL	sim-outorder.c	1730;"	d	file:
-RSLINK_NEW	sim-outorder.c	1739;"	d	file:
+RSLINK_FREE	sim-outorder.c	1794;"	d	file:
+RSLINK_FREE_LIST	sim-outorder.c	1803;"	d	file:
+RSLINK_INIT	sim-outorder.c	1769;"	d	file:
+RSLINK_IS_NULL	sim-outorder.c	1773;"	d	file:
+RSLINK_NEW	sim-outorder.c	1782;"	d	file:
 RSLINK_NULL	sim-outorder.c	/^static struct RS_link RSLINK_NULL = RSLINK_NULL_DATA;$/;"	v	typeref:struct:RS_link	file:
-RSLINK_NULL_DATA	sim-outorder.c	1722;"	d	file:
-RSLINK_RS	sim-outorder.c	1736;"	d	file:
-RSLINK_VALID	sim-outorder.c	1733;"	d	file:
+RSLINK_NULL_DATA	sim-outorder.c	1765;"	d	file:
+RSLINK_RS	sim-outorder.c	1779;"	d	file:
+RSLINK_VALID	sim-outorder.c	1776;"	d	file:
 RS_link	sim-outorder.c	/^struct RS_link {$/;"	s	file:
 RT	target-pisa/pisa.h	306;"	d
 RUU	sim-outorder.c	/^static struct RUU_station *RUU;		\/* register update unit *\/$/;"	v	typeref:struct:RUU_station	file:
@@ -1777,7 +1778,7 @@ RUU_size	sim-outorder.c	/^static int RUU_size = 8;$/;"	v	file:
 RUU_station	sim-outorder.c	/^struct RUU_station {$/;"	s	file:
 RUU_tail	sim-outorder.c	/^static int RUU_head, RUU_tail;		\/* RUU head and tail pointers *\/$/;"	v	file:
 RZERO	misc.c	442;"	d	file:
-R_BMAP_SZ	sim-outorder.c	2854;"	d	file:
+R_BMAP_SZ	sim-outorder.c	2897;"	d	file:
 Random	cache.h	/^  Random,	\/* replace a random block *\/$/;"	e	enum:cache_policy
 RdPort	machine.h	/^  RdPort,		\/* memory read port *\/$/;"	e	enum:md_fu_class
 RdPort	target-alpha/alpha.h	/^  RdPort,		\/* memory read port *\/$/;"	e	enum:md_fu_class
@@ -1786,99 +1787,99 @@ Read	memory.h	/^  Read,			\/* read memory from target (simulated prog) to host *
 ReadDict	tests-alpha/src/anagram.c	/^void ReadDict(char *pchFile) {$/;"	f
 ReadDict	tests-pisa/src/anagram.c	/^void ReadDict(char *pchFile) {$/;"	f
 ReadDict	tests/src/anagram.c	/^void ReadDict(char *pchFile) {$/;"	f
-SET_CPC	sim-outorder.c	3405;"	d	file:
-SET_CREATE_VECTOR	sim-outorder.c	2075;"	d	file:
+SET_CPC	sim-outorder.c	3448;"	d	file:
+SET_CREATE_VECTOR	sim-outorder.c	2118;"	d	file:
 SET_EXO_ARR	libexo/libexo.h	160;"	d
 SET_FCC	sim-bpred.c	393;"	d	file:
 SET_FCC	sim-cache.c	629;"	d	file:
 SET_FCC	sim-eio.c	347;"	d	file:
 SET_FCC	sim-fast.c	253;"	d	file:
-SET_FCC	sim-outorder.c	3471;"	d	file:
-SET_FCC	sim-outorder.c	3521;"	d	file:
+SET_FCC	sim-outorder.c	3514;"	d	file:
+SET_FCC	sim-outorder.c	3564;"	d	file:
 SET_FCC	sim-profile.c	589;"	d	file:
 SET_FCC	sim-safe.c	216;"	d	file:
 SET_FPCR	sim-bpred.c	405;"	d	file:
 SET_FPCR	sim-cache.c	641;"	d	file:
 SET_FPCR	sim-eio.c	359;"	d	file:
 SET_FPCR	sim-fast.c	265;"	d	file:
-SET_FPCR	sim-outorder.c	3505;"	d	file:
+SET_FPCR	sim-outorder.c	3548;"	d	file:
 SET_FPCR	sim-profile.c	601;"	d	file:
 SET_FPCR	sim-safe.c	228;"	d	file:
 SET_FPR	sim-bpred.c	401;"	d	file:
 SET_FPR	sim-cache.c	637;"	d	file:
 SET_FPR	sim-eio.c	355;"	d	file:
 SET_FPR	sim-fast.c	261;"	d	file:
-SET_FPR	sim-outorder.c	3493;"	d	file:
+SET_FPR	sim-outorder.c	3536;"	d	file:
 SET_FPR	sim-profile.c	597;"	d	file:
 SET_FPR	sim-safe.c	224;"	d	file:
 SET_FPR_D	sim-bpred.c	385;"	d	file:
 SET_FPR_D	sim-cache.c	621;"	d	file:
 SET_FPR_D	sim-eio.c	339;"	d	file:
 SET_FPR_D	sim-fast.c	245;"	d	file:
-SET_FPR_D	sim-outorder.c	3443;"	d	file:
+SET_FPR_D	sim-outorder.c	3486;"	d	file:
 SET_FPR_D	sim-profile.c	581;"	d	file:
 SET_FPR_D	sim-safe.c	208;"	d	file:
 SET_FPR_F	sim-bpred.c	383;"	d	file:
 SET_FPR_F	sim-cache.c	619;"	d	file:
 SET_FPR_F	sim-eio.c	337;"	d	file:
 SET_FPR_F	sim-fast.c	243;"	d	file:
-SET_FPR_F	sim-outorder.c	3435;"	d	file:
+SET_FPR_F	sim-outorder.c	3478;"	d	file:
 SET_FPR_F	sim-profile.c	579;"	d	file:
 SET_FPR_F	sim-safe.c	206;"	d	file:
 SET_FPR_L	sim-bpred.c	381;"	d	file:
 SET_FPR_L	sim-cache.c	617;"	d	file:
 SET_FPR_L	sim-eio.c	335;"	d	file:
 SET_FPR_L	sim-fast.c	241;"	d	file:
-SET_FPR_L	sim-outorder.c	3427;"	d	file:
+SET_FPR_L	sim-outorder.c	3470;"	d	file:
 SET_FPR_L	sim-profile.c	577;"	d	file:
 SET_FPR_L	sim-safe.c	204;"	d	file:
 SET_FPR_Q	sim-bpred.c	399;"	d	file:
 SET_FPR_Q	sim-cache.c	635;"	d	file:
 SET_FPR_Q	sim-eio.c	353;"	d	file:
 SET_FPR_Q	sim-fast.c	259;"	d	file:
-SET_FPR_Q	sim-outorder.c	3485;"	d	file:
+SET_FPR_Q	sim-outorder.c	3528;"	d	file:
 SET_FPR_Q	sim-profile.c	595;"	d	file:
 SET_FPR_Q	sim-safe.c	222;"	d	file:
 SET_GPR	sim-bpred.c	375;"	d	file:
 SET_GPR	sim-cache.c	611;"	d	file:
 SET_GPR	sim-eio.c	329;"	d	file:
 SET_GPR	sim-fast.c	235;"	d	file:
-SET_GPR	sim-outorder.c	3413;"	d	file:
+SET_GPR	sim-outorder.c	3456;"	d	file:
 SET_GPR	sim-profile.c	571;"	d	file:
 SET_GPR	sim-safe.c	198;"	d	file:
 SET_HI	sim-bpred.c	388;"	d	file:
 SET_HI	sim-cache.c	624;"	d	file:
 SET_HI	sim-eio.c	342;"	d	file:
 SET_HI	sim-fast.c	248;"	d	file:
-SET_HI	sim-outorder.c	3455;"	d	file:
+SET_HI	sim-outorder.c	3498;"	d	file:
 SET_HI	sim-profile.c	584;"	d	file:
 SET_HI	sim-safe.c	211;"	d	file:
 SET_LO	sim-bpred.c	390;"	d	file:
 SET_LO	sim-cache.c	626;"	d	file:
 SET_LO	sim-eio.c	344;"	d	file:
 SET_LO	sim-fast.c	250;"	d	file:
-SET_LO	sim-outorder.c	3463;"	d	file:
+SET_LO	sim-outorder.c	3506;"	d	file:
 SET_LO	sim-profile.c	586;"	d	file:
 SET_LO	sim-safe.c	213;"	d	file:
 SET_NPC	sim-bpred.c	364;"	d	file:
 SET_NPC	sim-cache.c	604;"	d	file:
 SET_NPC	sim-eio.c	322;"	d	file:
 SET_NPC	sim-fast.c	228;"	d	file:
-SET_NPC	sim-outorder.c	3397;"	d	file:
+SET_NPC	sim-outorder.c	3440;"	d	file:
 SET_NPC	sim-profile.c	564;"	d	file:
 SET_NPC	sim-safe.c	191;"	d	file:
 SET_TPC	machine.h	333;"	d
 SET_TPC	sim-bpred.c	367;"	d	file:
 SET_TPC	sim-bpred.c	368;"	d	file:
-SET_TPC	sim-outorder.c	3400;"	d	file:
-SET_TPC	sim-outorder.c	3401;"	d	file:
+SET_TPC	sim-outorder.c	3443;"	d	file:
+SET_TPC	sim-outorder.c	3444;"	d	file:
 SET_TPC	target-alpha/alpha.h	333;"	d
 SET_TPC	target-pisa/pisa.h	350;"	d
 SET_UNIQ	sim-bpred.c	407;"	d	file:
 SET_UNIQ	sim-cache.c	643;"	d	file:
 SET_UNIQ	sim-eio.c	361;"	d	file:
 SET_UNIQ	sim-fast.c	267;"	d	file:
-SET_UNIQ	sim-outorder.c	3513;"	d	file:
+SET_UNIQ	sim-outorder.c	3556;"	d	file:
 SET_UNIQ	sim-profile.c	603;"	d	file:
 SET_UNIQ	sim-safe.c	230;"	d	file:
 SEXT	machine.h	312;"	d
@@ -2081,14 +2082,14 @@ SS_SYS_waitpid	target-pisa/syscall.c	432;"	d	file:
 SS_SYS_write	target-pisa/pisa.h	420;"	d
 SS_SYS_writev	target-pisa/syscall.c	352;"	d	file:
 STATVAL	sim-cache.c	114;"	d	file:
-STATVAL	sim-outorder.c	400;"	d	file:
+STATVAL	sim-outorder.c	407;"	d	file:
 STATVAL	sim-profile.c	286;"	d	file:
 STAT_H	stats.h	53;"	d
-STORE_ADDR_INDEX	sim-outorder.c	1650;"	d	file:
-STORE_ADDR_READY	sim-outorder.c	1653;"	d	file:
-STORE_HASH_SIZE	sim-outorder.c	2914;"	d	file:
-STORE_OP_INDEX	sim-outorder.c	1649;"	d	file:
-STORE_OP_READY	sim-outorder.c	1652;"	d	file:
+STORE_ADDR_INDEX	sim-outorder.c	1693;"	d	file:
+STORE_ADDR_READY	sim-outorder.c	1696;"	d	file:
+STORE_HASH_SIZE	sim-outorder.c	2957;"	d	file:
+STORE_OP_INDEX	sim-outorder.c	1692;"	d	file:
+STORE_OP_READY	sim-outorder.c	1695;"	d	file:
 SWAP_HALF	endian.h	56;"	d
 SWAP_QWORD	endian.h	62;"	d
 SWAP_WORD	endian.h	58;"	d
@@ -2102,7 +2103,7 @@ SYSCALL	sim-bpred.c	437;"	d	file:
 SYSCALL	sim-cache.c	717;"	d	file:
 SYSCALL	sim-eio.c	391;"	d	file:
 SYSCALL	sim-fast.c	297;"	d	file:
-SYSCALL	sim-outorder.c	3571;"	d	file:
+SYSCALL	sim-outorder.c	3614;"	d	file:
 SYSCALL	sim-profile.c	633;"	d	file:
 SYSCALL	sim-safe.c	260;"	d	file:
 SYSCALL_H	syscall.h	53;"	d
@@ -2165,7 +2166,7 @@ UNIQ	sim-bpred.c	406;"	d	file:
 UNIQ	sim-cache.c	642;"	d	file:
 UNIQ	sim-eio.c	360;"	d	file:
 UNIQ	sim-fast.c	266;"	d	file:
-UNIQ	sim-outorder.c	3510;"	d	file:
+UNIQ	sim-outorder.c	3553;"	d	file:
 UNIQ	sim-profile.c	602;"	d	file:
 UNIQ	sim-safe.c	229;"	d	file:
 UNS	tests-alpha/src/test-printf.c	100;"	d	file:
@@ -2190,28 +2191,28 @@ WRITE_BYTE	sim-bpred.c	425;"	d	file:
 WRITE_BYTE	sim-cache.c	685;"	d	file:
 WRITE_BYTE	sim-eio.c	379;"	d	file:
 WRITE_BYTE	sim-fast.c	285;"	d	file:
-WRITE_BYTE	sim-outorder.c	3559;"	d	file:
+WRITE_BYTE	sim-outorder.c	3602;"	d	file:
 WRITE_BYTE	sim-profile.c	621;"	d	file:
 WRITE_BYTE	sim-safe.c	248;"	d	file:
 WRITE_HALF	sim-bpred.c	427;"	d	file:
 WRITE_HALF	sim-cache.c	688;"	d	file:
 WRITE_HALF	sim-eio.c	381;"	d	file:
 WRITE_HALF	sim-fast.c	287;"	d	file:
-WRITE_HALF	sim-outorder.c	3561;"	d	file:
+WRITE_HALF	sim-outorder.c	3604;"	d	file:
 WRITE_HALF	sim-profile.c	623;"	d	file:
 WRITE_HALF	sim-safe.c	250;"	d	file:
 WRITE_QWORD	sim-bpred.c	432;"	d	file:
 WRITE_QWORD	sim-cache.c	695;"	d	file:
 WRITE_QWORD	sim-eio.c	386;"	d	file:
 WRITE_QWORD	sim-fast.c	292;"	d	file:
-WRITE_QWORD	sim-outorder.c	3566;"	d	file:
+WRITE_QWORD	sim-outorder.c	3609;"	d	file:
 WRITE_QWORD	sim-profile.c	628;"	d	file:
 WRITE_QWORD	sim-safe.c	255;"	d	file:
 WRITE_WORD	sim-bpred.c	429;"	d	file:
 WRITE_WORD	sim-cache.c	691;"	d	file:
 WRITE_WORD	sim-eio.c	383;"	d	file:
 WRITE_WORD	sim-fast.c	289;"	d	file:
-WRITE_WORD	sim-outorder.c	3563;"	d	file:
+WRITE_WORD	sim-outorder.c	3606;"	d	file:
 WRITE_WORD	sim-profile.c	625;"	d	file:
 WRITE_WORD	sim-safe.c	252;"	d	file:
 WR_BASE	target-pisa/pisa.h	363;"	d
@@ -2291,14 +2292,14 @@ Zero	tests-alpha/src/anagram.c	243;"	d	file:
 Zero	tests-pisa/src/anagram.c	243;"	d	file:
 Zero	tests/src/anagram.c	243;"	d	file:
 __BITMAP_OP	bitmap.h	88;"	d
-__CACHE_ACCESS	cache.c	80;"	d	file:
+__CACHE_ACCESS	cache.c	83;"	d	file:
 __QUEUE_EVENT	eventq.c	76;"	d	file:
 __READ_CACHE	sim-cache.c	650;"	d	file:
-__READ_SPECMEM	sim-outorder.c	3534;"	d	file:
+__READ_SPECMEM	sim-outorder.c	3577;"	d	file:
 __UNCHK_MEM_READ	memory.h	157;"	d
 __UNCHK_MEM_WRITE	memory.h	167;"	d
 __WRITE_CACHE	sim-cache.c	675;"	d	file:
-__WRITE_SPECMEM	sim-outorder.c	3553;"	d	file:
+__WRITE_SPECMEM	sim-outorder.c	3596;"	d	file:
 __check_break	dlite.c	/^__check_break(md_addr_t next_PC,		\/* address of next inst *\/$/;"	f
 __cplusplus	libexo/exolex.c	18;"	d	file:
 __opt_process_options	options.c	/^__opt_process_options(struct opt_odb_t *odb,	\/* option data base *\/$/;"	f	file:
@@ -2515,7 +2516,7 @@ c	tests-pisa/src/test-printf.c	/^  double c;$/;"	m	struct:__anon12	file:
 c	tests/src/test-printf.c	/^  double c;$/;"	m	struct:__anon19	file:
 cache_access	cache.c	/^cache_access(struct cache_t *cp,	\/* cache to access *\/$/;"	f
 cache_blk_t	cache.h	/^struct cache_blk_t$/;"	s
-cache_byte	cache.h	279;"	d
+cache_byte	cache.h	282;"	d
 cache_char2policy	cache.c	/^cache_char2policy(char c)		\/* replacement policy as a char *\/$/;"	f
 cache_config	cache.c	/^cache_config(struct cache_t *cp,	\/* cache instance *\/$/;"	f
 cache_create	cache.c	/^cache_create(char *name,		\/* name of the cache *\/$/;"	f
@@ -2529,12 +2530,14 @@ cache_dl2	sim-outorder.c	/^static struct cache_t *cache_dl2;$/;"	v	typeref:struc
 cache_dl2_lat	sim-outorder.c	/^static int cache_dl2_lat;$/;"	v	file:
 cache_dl2_opt	sim-cache.c	/^static char *cache_dl2_opt \/* = "none" *\/;$/;"	v	file:
 cache_dl2_opt	sim-outorder.c	/^static char *cache_dl2_opt;$/;"	v	file:
-cache_double	cache.h	269;"	d
-cache_dword	cache.h	273;"	d
-cache_float	cache.h	271;"	d
+cache_dl2_prefetch	sim-outorder.c	/^static char *cache_dl2_prefetch;$/;"	v	file:
+cache_dl2_prefetch_sandbox	sim-outorder.c	/^static char *cache_dl2_prefetch_sandbox;$/;"	v	file:
+cache_double	cache.h	272;"	d
+cache_dword	cache.h	276;"	d
+cache_float	cache.h	274;"	d
 cache_flush	cache.c	/^cache_flush(struct cache_t *cp,		\/* cache instance to flush *\/$/;"	f
 cache_flush_addr	cache.c	/^cache_flush_addr(struct cache_t *cp,	\/* cache instance to flush *\/$/;"	f
-cache_half	cache.h	277;"	d
+cache_half	cache.h	280;"	d
 cache_il1	sim-cache.c	/^static struct cache_t *cache_il1 = NULL;$/;"	v	typeref:struct:cache_t	file:
 cache_il1	sim-outorder.c	/^static struct cache_t *cache_il1;$/;"	v	typeref:struct:cache_t	file:
 cache_il1_lat	sim-outorder.c	/^static int cache_il1_lat;$/;"	v	file:
@@ -2546,13 +2549,15 @@ cache_il2_lat	sim-outorder.c	/^static int cache_il2_lat;$/;"	v	file:
 cache_il2_opt	sim-cache.c	/^static char *cache_il2_opt \/* = "none" *\/;$/;"	v	file:
 cache_il2_opt	sim-outorder.c	/^static char *cache_il2_opt;$/;"	v	file:
 cache_mstate_obj	sim-cache.c	/^cache_mstate_obj(FILE *stream,			\/* output stream *\/$/;"	f	file:
+cache_normal_prefetch	cache.h	/^  unsigned char cache_normal_prefetch;$/;"	m	struct:cache_t
 cache_policy	cache.h	/^enum cache_policy {$/;"	g
 cache_probe	cache.c	/^cache_probe(struct cache_t *cp,		\/* cache instance to probe *\/$/;"	f
 cache_reg_stats	cache.c	/^cache_reg_stats(struct cache_t *cp,	\/* cache instance *\/$/;"	f
+cache_sandbox_prefetch	cache.h	/^  unsigned char cache_sandbox_prefetch;$/;"	m	struct:cache_t
 cache_set_t	cache.h	/^struct cache_set_t$/;"	s
 cache_stats	cache.c	/^cache_stats(struct cache_t *cp,		\/* cache instance *\/$/;"	f
 cache_t	cache.h	/^struct cache_t$/;"	s
-cache_word	cache.h	275;"	d
+cache_word	cache.h	278;"	d
 callback	eventq.h	/^    } callback;$/;"	m	union:eventq_desc::eventq_data	typeref:struct:eventq_desc::eventq_data::__anon29
 caux	target-alpha/ecoff.h	/^  sword_t caux;$/;"	m	struct:ecoff_fdr
 caux	target-pisa/ecoff.h	/^  sword_t caux;$/;"	m	struct:ecoff_fdr

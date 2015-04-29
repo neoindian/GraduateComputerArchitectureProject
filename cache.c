@@ -272,7 +272,7 @@ cache_create(char *name,		/* name of the cache */
 	     unsigned int (*blk_access_fn)(enum mem_cmd cmd,
 					   md_addr_t baddr, int bsize,
 					   struct cache_blk_t *blk,
-					   tick_t now),
+					   tick_t now,int prefetchFlag),
 	     unsigned int hit_latency)	/* latency in cycles for a hit */
 {
   struct cache_t *cp;
@@ -691,7 +691,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
 	      cp->writebacks++;
 	      lat += cp->blk_access_fn(Write,
 				   CACHE_MK_BADDR(cp, replPrefetch[i]->tag, setPrefetch[i]),
-				   cp->bsize, replPrefetch[i], now+lat);
+				   cp->bsize, replPrefetch[i], now+lat,i);
 	  }
         }
       }//end of for
@@ -720,7 +720,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
 	    cp->writebacks++;
 	    lat += cp->blk_access_fn(Write,
 				   CACHE_MK_BADDR(cp, repl->tag, set),
-				   cp->bsize, repl, now+lat);
+				   cp->bsize, repl, now+lat,0);
 	  }
        }
    }
@@ -747,13 +747,13 @@ cache_access(struct cache_t *cp,	/* cache to access */
     for(i=0;i<MAXPREFETCHLEVEL;i++)
     {
        md_addr_t addrPrefetch=(addr+(i*cp->bsize));
-       lat += cp->blk_access_fn(Read, CACHE_BADDR(cp,addrPrefetch), cp->bsize,replPrefetch[i], now+lat);
+       lat += cp->blk_access_fn(Read, CACHE_BADDR(cp,addrPrefetch), cp->bsize,replPrefetch[i], now+lat,i);
     }
   }
   else
   {
        lat += cp->blk_access_fn(Read, CACHE_BADDR(cp, addr), cp->bsize,
-			   repl, now+lat);
+			   repl, now+lat,0);
   }
 
   /* copy data out of cache block */
@@ -973,7 +973,7 @@ cache_flush(struct cache_t *cp,		/* cache instance to flush */
           	  cp->writebacks++;
 		  lat += cp->blk_access_fn(Write,
 					   CACHE_MK_BADDR(cp, blk->tag, i),
-					   cp->bsize, blk, now+lat);
+					   cp->bsize, blk, now+lat,i);
 		}
 	    }
 	}
@@ -1035,7 +1035,7 @@ cache_flush_addr(struct cache_t *cp,	/* cache instance to flush */
           cp->writebacks++;
 	  lat += cp->blk_access_fn(Write,
 				   CACHE_MK_BADDR(cp, blk->tag, set),
-				   cp->bsize, blk, now+lat);
+				   cp->bsize, blk, now+lat,0);
 	}
       /* move this block to tail of the way (LRU) list */
       update_way_list(&cp->sets[set], blk, Tail);

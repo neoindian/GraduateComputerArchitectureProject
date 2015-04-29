@@ -174,8 +174,8 @@ struct cache_t
 		     md_addr_t baddr,		/* program address to access */
 		     int bsize,			/* size of the cache block */
 		     struct cache_blk_t *blk,	/* ptr to cache block struct */
-		     tick_t now);		/* when fetch was initiated */
-
+		     tick_t now,		/* when fetch was initiated */
+                     int prefetchFlag);         /* whether pre-fetch is initiated*/
   /* derived data, for fast decoding */
   int hsize;			/* cache set hash table size */
   md_addr_t blk_mask;
@@ -227,7 +227,7 @@ cache_create(char *name,		/* name of the cache */
 	     unsigned int (*blk_access_fn)(enum mem_cmd cmd,
 					   md_addr_t baddr, int bsize,
 					   struct cache_blk_t *blk,
-					   tick_t now),
+					   tick_t now,int prefetchFlag),
 	     unsigned int hit_latency);/* latency in cycles for a hit */
 
 /* parse policy */
