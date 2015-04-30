@@ -491,7 +491,7 @@ il1_access_fn(enum mem_cmd cmd,		/* access cmd, Read or Write */
 	      md_addr_t baddr,		/* block address to access */
 	      int bsize,		/* size of block to access */
 	      struct cache_blk_t *blk,	/* ptr to block in upper level */
-	      tick_t now)		/* time of access */
+	      tick_t now,int prefetchFalg)		/* time of access */
 {
   unsigned int lat;
 
@@ -521,7 +521,7 @@ il2_access_fn(enum mem_cmd cmd,		/* access cmd, Read or Write */
 	      md_addr_t baddr,		/* block address to access */
 	      int bsize,		/* size of block to access */
 	      struct cache_blk_t *blk,	/* ptr to block in upper level */
-	      tick_t now)		/* time of access */
+	      tick_t now,int prefetchFlag)		/* time of access */
 {
   /* this is a miss to the lowest level, so access main memory */
   if (cmd == Read)
@@ -541,7 +541,7 @@ itlb_access_fn(enum mem_cmd cmd,	/* access cmd, Read or Write */
 	       md_addr_t baddr,		/* block address to access */
 	       int bsize,		/* size of block to access */
 	       struct cache_blk_t *blk,	/* ptr to block in upper level */
-	       tick_t now)		/* time of access */
+	       tick_t now,int prefetchFlag)		/* time of access */
 {
   md_addr_t *phy_page_ptr = (md_addr_t *)blk->user_data;
 
@@ -561,7 +561,7 @@ dtlb_access_fn(enum mem_cmd cmd,	/* access cmd, Read or Write */
 	       md_addr_t baddr,	/* block address to access */
 	       int bsize,		/* size of block to access */
 	       struct cache_blk_t *blk,	/* ptr to block in upper level */
-	       tick_t now)		/* time of access */
+	       tick_t now,int prefetchFlag)		/* time of access */
 {
   md_addr_t *phy_page_ptr = (md_addr_t *)blk->user_data;
 

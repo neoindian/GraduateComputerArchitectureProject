@@ -59,7 +59,7 @@
 #include "machine.h"
 #include "memory.h"
 #include "stats.h"
-
+#include "bloom.h"
 /*
  * This module contains code to implement various cache-like structures.  The
  * user instantiates caches using cache_new().  When instantiated, the user
@@ -147,6 +147,10 @@ struct cache_set_t
 /* cache definition */
 struct cache_t
 {
+  BLOOM *bloom; /*Bloom filter which stores the address patterns*/
+  int bloomCount;
+  int bloomTrainFlag;
+  int patternRankings[4];       /*We store the pattenrs of spatial locality access from +16,+8,+4,+2 ,-2,-4,-8,-16*/
   /* parameters */
   char *name;			/* cache name */
   int nsets;			/* number of sets */

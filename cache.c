@@ -57,12 +57,10 @@
 #include "misc.h"
 #include "machine.h"
 #include "cache.h"
-#include "bloom.h"
 
 /* cache prefetch config macro*/
-#define MAXPREFETCHLEVEL 4 
-BLOOM *bloom;
-
+#define MAXPREFETCHLEVEL 2 
+int patternOffsets[4]={-4,-2,2,4};
 /* cache access macros */
 #define CACHE_TAG(cp, addr)	((addr) >> (cp)->tag_shift)
 #define CACHE_SET(cp, addr)	(((addr) >> (cp)->set_shift) & (cp)->set_mask)
@@ -277,15 +275,11 @@ cache_create(char *name,		/* name of the cache */
 					   tick_t now,int prefetchFlag),
 	     unsigned int hit_latency)	/* latency in cycles for a hit */
 {
-   if(!(bloom=bloom_create(2500000, 2, sax_hash, sdbm_hash))) {
-		fprintf(stderr, "ERROR: Could not create bloom filter\n");
-		return EXIT_FAILURE;
-   }
-
-
+   
   struct cache_t *cp;
   struct cache_blk_t *blk;
   int i, j, bindex;
+
 
   /* check all cache parameters */
   if (nsets <= 0)
@@ -312,6 +306,15 @@ cache_create(char *name,		/* name of the cache */
   if (!cp)
     fatal("out of virtual memory");
 
+  //The number of entries in the bloom filter will be the number of 
+  //blocks in the cache
+  if(!(cp->bloom=bloom_create(nsets*assoc, 2, sax_hash, sdbm_hash)))
+  {
+      fprintf(stderr, "ERROR: Could not create bloom filter\n");
+      return EXIT_FAILURE;
+   }
+   else
+     printf("\nBloom created successfully");
   /* initialize user parameters */
   cp->name = mystrdup(name);
   cp->nsets = nsets;
@@ -528,25 +531,42 @@ cache_access(struct cache_t *cp,	/* cache to access */
   md_addr_t bofsPrefetch[MAXPREFETCHLEVEL];
   //Nishant : We fetch not only the current block but the next block of address
   //On miss.
-  if(cp->cache_normal_prefetch || cp->cache_sandbox_prefetch)
+  char buff[512]={0};
+  if(cp->cache_normal_prefetch ||cp->cache_sandbox_prefetch)
   {
     int i;
+    //TODO Move this tag generation to the CACHE MISS section
+    //where we can easily know how many pre-fetches to issue.
     for(i=0;i<MAXPREFETCHLEVEL;i++)
     {
         //printf("\n Prefetch Level = %d Address  = %lld",i+1,(addr+(i*cp->bsize)));
         tagPrefetch[i]=CACHE_TAG(cp,addr+(i*cp->bsize));   
         setPrefetch[i]=CACHE_SET(cp,addr+(i*cp->bsize));
         bofsPrefetch[i]=CACHE_BLK(cp,addr+(i*cp->bsize));
+
+        //TODO Flush the bloom filter every 256 accesses.
+        //Means to destroy it and recreate and reset all flags 
+        //And start learning again
+        snprintf(buff,512,"%d",addr+(i*cp->bsize));
+        //printf("\nAddr=%s",buff);
+        if(cp->bloomTrainFlag && !(bloom_check(cp->bloom,buff)))
+        {
+           //printf("Not found in filter and hence have to add\n");
+           if(cp->bloomTrainFlag)
+              bloom_add(cp->bloom,buff);
+           cp->bloomCount++;
+           if(cp->bloomCount>(cp->nsets*cp->assoc))
+              cp->bloomTrainFlag=0;
+        }
+        else
+        {
+           printf("Bloom training over %d\n",cp->bloomCount);
+        }
+        memset(buff,0,512);
     }
   }
-  /*if(cp->cache_normal_prefetch || cp->cache_sandbox_prefetch)
-  {
-     int i;
-     for(i=0;i<MAXPREFETCHLEVEL;i++)
-         bofsPrefetch[i]=CACHE_BLK(cp,addr+i);   
-  }*/
   struct cache_blk_t *blk, *repl;
-  struct cache_blk_t *replPrefetch[2];
+  struct cache_blk_t *replPrefetch[MAXPREFETCHLEVEL];
   int lat = 0;
 
   /* default replacement address */
@@ -602,12 +622,45 @@ cache_access(struct cache_t *cp,	/* cache to access */
 
   /* **MISS** */
   cp->misses++;
+  int prefetchOffset=0,maxRank=0,issuePrefetch=0,numOfPrefetch=0;
+  if(cp->cache_normal_prefetch)
+    numOfPrefetch=MAXPREFETCHLEVEL;
+  if(cp->cache_sandbox_prefetch)
+  {
+    //ev4aluate the prefetch patterns 
+    if((bloom_check(cp->bloom,buff)))
+    {
+      //Now evaluate all the 8 patterns 
+      int i =0;
+      for(i=0;i<8;i++)
+      {
+        memset(buff,0,512);
+        md_addr_t evalAddr=addr+(patternOffsets[i]*cp->bsize);
+        snprintf(buff,512,"%d",evalAddr);
+        if(bloom_check(cp->bloom,buff))
+        {
+          cp->patternRankings[i]+=1;
+          if(cp->patternRankings[i]>maxRank)
+          {
+            prefetchOffset=-(patternOffsets[i]);
+            maxRank=cp->patternRankings[i];
+          }
+        }
+      }
+    }
+    if(maxRank>2)
+    {
+      issuePrefetch=1; 
+      numOfPrefetch=abs(prefetchOffset);
+    }
+    
+  }
   /* select the appropriate block to replace, and re-link this entry to
      the appropriate place in the way list */
   switch (cp->policy) {
   case LRU:
   case FIFO:
-    if(cp->cache_normal_prefetch || cp->cache_sandbox_prefetch)
+    if(cp->cache_normal_prefetch)
     {
        int i;
        for(i=0;i<MAXPREFETCHLEVEL;i++)
@@ -624,7 +677,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
     }
     break;
   case Random:
-    if(cp->cache_normal_prefetch || cp->cache_sandbox_prefetch)
+    if(cp->cache_normal_prefetch)
     {
        int i,bindex,bindexprev=0;
        for(i=0;i<MAXPREFETCHLEVEL;i++)
@@ -650,7 +703,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
   /* remove this block from the hash bucket chain, if hash exists */
   if (cp->hsize)
   {
-    if(cp->cache_normal_prefetch || cp->cache_sandbox_prefetch)
+    if(cp->cache_normal_prefetch)
     {
        int i;
        for(i=0;i<MAXPREFETCHLEVEL;i++)
@@ -671,7 +724,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
 
   /* write back replaced block data */
   
-  if(cp->cache_normal_prefetch || cp->cache_sandbox_prefetch)
+  if(cp->cache_normal_prefetch)
   {
     int i;
     for(i=0;i<MAXPREFETCHLEVEL;i++)
@@ -733,7 +786,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
        }
    }
   /* update block tags */
-  if(cp->cache_normal_prefetch || cp->cache_sandbox_prefetch)
+  if(cp->cache_normal_prefetch)
   {
     int i;
     for(i=0;i<MAXPREFETCHLEVEL;i++)
@@ -749,7 +802,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
   }
 
   /* read data block */
-  if(cp->cache_normal_prefetch || cp->cache_sandbox_prefetch)
+  if(cp->cache_normal_prefetch)
   {
     int i;
     for(i=0;i<MAXPREFETCHLEVEL;i++)
@@ -765,7 +818,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
   }
 
   /* copy data out of cache block */
-  if(cp->cache_normal_prefetch || cp->cache_sandbox_prefetch)
+  if(cp->cache_normal_prefetch)
   {
     int i;
     for(i=0;i<MAXPREFETCHLEVEL;i++)
@@ -789,7 +842,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
   /* update dirty status */
   if (cmd == Write)
   {
-     if(cp->cache_normal_prefetch || cp->cache_sandbox_prefetch)
+     if(cp->cache_normal_prefetch)
      {
         int i;
         for(i=0;i<MAXPREFETCHLEVEL;i++)
@@ -800,7 +853,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
   } 
 
   /* get user block data, if requested and it exists */
-  if(cp->cache_normal_prefetch || cp->cache_sandbox_prefetch)
+  if(cp->cache_normal_prefetch)
   {
      if (udata)
         *udata = replPrefetch[0]->user_data;
@@ -813,7 +866,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
 
 
   /* update block status */
-  if(cp->cache_normal_prefetch || cp->cache_sandbox_prefetch)
+  if(cp->cache_normal_prefetch)
   {
      int i;
      for(i=0;i<MAXPREFETCHLEVEL;i++)
@@ -827,7 +880,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
   /* link this entry back into the hash table */
   if (cp->hsize)
   {
-     if(cp->cache_normal_prefetch || cp->cache_sandbox_prefetch)
+     if(cp->cache_normal_prefetch)
      {
         int i;
         for(i=0;i<MAXPREFETCHLEVEL;i++)
