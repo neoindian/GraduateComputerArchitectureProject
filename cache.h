@@ -150,7 +150,9 @@ struct cache_t
   BLOOM *bloom; /*Bloom filter which stores the address patterns*/
   int bloomCount;
   int bloomTrainFlag;
+  int learningInterval;
   int patternRankings[4];       /*We store the pattenrs of spatial locality access from +16,+8,+4,+2 ,-2,-4,-8,-16*/
+  int patternOffsets[4];
   /* parameters */
   char *name;			/* cache name */
   int nsets;			/* number of sets */
