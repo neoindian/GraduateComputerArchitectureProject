@@ -98,6 +98,7 @@
    speed block access, this macro decides if a cache is "highly associative" */
 #define CACHE_HIGHLY_ASSOC(cp)	((cp)->assoc > 4)
 
+#define MAXPREFETCHLEVEL 5 
 /* cache replacement policy */
 enum cache_policy {
   LRU,		/* replace least recently used block (perfect LRU) */
@@ -151,8 +152,8 @@ struct cache_t
   int bloomCount;
   int bloomTrainFlag;
   int learningInterval;
-  int patternRankings[4];       /*We store the pattenrs of spatial locality access from +16,+8,+4,+2 ,-2,-4,-8,-16*/
-  int patternOffsets[4];
+  int patternRankings[MAXPREFETCHLEVEL*2];       /*We store the pattenrs of spatial locality access from +16,+8,+4,+2 ,-2,-4,-8,-16*/
+  int patternOffsets[MAXPREFETCHLEVEL*2];
   /* parameters */
   char *name;			/* cache name */
   int nsets;			/* number of sets */
@@ -164,6 +165,8 @@ struct cache_t
   unsigned int hit_latency;	/* cache hit latency */
   unsigned char cache_normal_prefetch;
   unsigned char cache_sandbox_prefetch;
+  unsigned char prefetchLevel;
+  unsigned char setPattern;
   
 
   /* miss/replacement handler, read/write BSIZE bytes starting at BADDR

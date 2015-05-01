@@ -168,6 +168,7 @@ static char *cache_dl2_opt;
 
 /* l2 data cache pre-fetch enable, i.e., {<config>|none}*/
 static char *cache_dl2_prefetch;
+static char *cache_dl2_prefetch_opt;
 
 /* l2 data cache pre-fetch enable, i.e., {<config>|none}*/
 static char *cache_dl2_prefetch_sandbox;
@@ -773,12 +774,17 @@ sim_reg_options(struct opt_odb_t *odb)
 		 /* print */TRUE, NULL);
   /*Normal prefetch cache options*/
   opt_reg_string(odb, "-prefetch",
-           "<true/false> # false # use prefetch for DL2",
-           &cache_dl2_prefetch, /* default */"false",
+           "Prefetch enable disable for L2,i.e, {false}",
+           &cache_dl2_prefetch, "false",
+           /* print */TRUE, NULL);
+  opt_reg_string(odb, "-prefetch:dl2",
+           "Prefetch level,i.e, {false}",
+           &cache_dl2_prefetch_opt, "2",
            /* print */TRUE, NULL);
   /*Sandbox prefetch cache options*/
+  /*Sandbox prefetch cache options*/
   opt_reg_string(odb, "-sandboxprefetch",
-           "<true/false> # false # use sandbox prefetch in DL2",
+           "Prefetch configuration for L2,i.e, {<true/false>}",
            &cache_dl2_prefetch_sandbox, /* default */"false",
            /* print */TRUE, NULL);
 
@@ -830,16 +836,16 @@ sim_reg_options(struct opt_odb_t *odb)
 	       &compress_icache_addrs, /* default */FALSE,
 	       /* print */TRUE, NULL);
   /*Cache Prefetch options*/
-  opt_reg_string(odb, "-cache_dl2_prefetch",
-           "<true/false> # false # use cache prefetch in DL2",
-           &cache_dl2_prefetch, /* default */"false",
-           /* print */TRUE, NULL);
+  //opt_reg_string(odb, "-cache_dl2_prefetch",
+  //         "<true/false> # false # use cache prefetch in DL2",
+  //         &cache_dl2_prefetch, /* default */"false",
+  //         /* print */TRUE, NULL);
 
   /*Cache Prefetch options*/
-  opt_reg_string(odb, "-cache_dl2_prefetch_sandbox",
-           "<true/false> # false # use cache prefetch sandbox in DL2",
-           &cache_dl2_prefetch_sandbox, /* default */"false",
-           /* print */TRUE, NULL);
+  //opt_reg_string(odb, "-cache_dl2_prefetch_sandbox",
+  //         "<true/false> # false # use cache prefetch sandbox in DL2",
+  //         &cache_dl2_prefetch_sandbox, /* default */"false",
+  //         /* print */TRUE, NULL);
 
   /* mem options */
   opt_reg_int_list(odb, "-mem:lat",
@@ -1126,17 +1132,74 @@ sim_check_options(struct opt_odb_t *odb,        /* options database */
     if (!mystricmp(cache_dl2_prefetch, "true"))
     {
     	  printf("Nishant\n");
-    	  //Set the pseudo associative cache flag to true on the L1 cache
           cache_dl2->cache_normal_prefetch= 1;
+          if (!mystricmp(cache_dl2_prefetch_opt, "none"))
+	    fatal("L2 prefetch option undefined");
+          int prefetchLevel=0;
+	  if (sscanf(cache_dl2_prefetch_opt, "%d",&prefetchLevel)!=1)
+            fatal("L2 prefetch bad param: <n>");
+          printf("\n Prefetch Level is %d",prefetchLevel);
+    	  //Set the pseudo associative cache flag to true on the L1 cache
+          cache_dl2->prefetchLevel=prefetchLevel;
     }
     if (!mystricmp(cache_dl2_prefetch_sandbox, "true"))
     {
     	  printf("Nishant\n");
-    	  //Set the pseudo associative cache flag to true on the L1 cache
           cache_dl2->cache_sandbox_prefetch= 1;
+          if (!mystricmp(cache_dl2_prefetch_opt, "none"))
+	    fatal("L2 prefetch option undefined");
+          int prefetchLevel=0;
+	  if (sscanf(cache_dl2_prefetch_opt, "%d",&prefetchLevel)!=1)
+            fatal("L2 prefetch bad param: <n>");
+          printf("\n Prefetch Level is %d Line %d",prefetchLevel,__LINE__);
+    	  //Set the pseudo associative cache flag to true on the L1 cache
+          cache_dl2->prefetchLevel=prefetchLevel;
+    }
+  /* use an I-TLB? */
+  if (!mystricmp(itlb_opt, "none"))
+    itlb = NULL;
+  else
+    {
+      if (sscanf(itlb_opt, "%[^:]:%d:%d:%d:%c",
+		 name, &nsets, &bsize, &assoc, &c) != 5)
+	fatal("bad TLB parms: <name>:<nsets>:<page_size>:<assoc>:<repl>");
+      itlb = cache_create(name, nsets, bsize, /* balloc */FALSE,
+			  /* usize */sizeof(md_addr_t), assoc,
+			  cache_char2policy(c), itlb_access_fn,
+			  /* hit latency */1);
     }
 
+  /* use a D-TLB? */
+  if (!mystricmp(dtlb_opt, "none"))
+    dtlb = NULL;
+  else
+    {
+      if (sscanf(dtlb_opt, "%[^:]:%d:%d:%d:%c",
+		 name, &nsets, &bsize, &assoc, &c) != 5)
+	fatal("bad TLB parms: <name>:<nsets>:<page_size>:<assoc>:<repl>");
+      dtlb = cache_create(name, nsets, bsize, /* balloc */FALSE,
+			  /* usize */sizeof(md_addr_t), assoc,
+			  cache_char2policy(c), dtlb_access_fn,
+			  /* hit latency */1);
+    }
 
+  if (cache_dl1_lat < 1)
+    fatal("l1 data cache latency must be greater than zero");
+
+  if (cache_dl2_lat < 1)
+    fatal("l2 data cache latency must be greater than zero");
+
+  if (cache_il1_lat < 1)
+    fatal("l1 instruction cache latency must be greater than zero");
+
+  if (cache_il2_lat < 1)
+    fatal("l2 instruction cache latency must be greater than zero");
+
+  if (mem_nelt != 2)
+    fatal("bad memory access latency (<first_chunk> <inter_chunk>)");
+
+  if (mem_lat[0] < 1 || mem_lat[1] < 1)
+    fatal("all memory access latencies must be greater than zero");
 
   /* use an I-TLB? */
   if (!mystricmp(itlb_opt, "none"))
