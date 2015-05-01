@@ -632,7 +632,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
         for(i=0;i<cp->prefetchLevel;i++)
         cp->patternRankings[i]=0;
          
-        if(!(cp->bloom=bloom_create(cp->nsets*cp->assoc, 2, sax_hash, sdbm_hash)))
+        if(!(cp->bloom=bloom_create(2048, 2, sax_hash, sdbm_hash)))
         {
            fprintf(stderr, "ERROR: Could not create bloom filter\n");
            return EXIT_FAILURE;
@@ -652,7 +652,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
           bloom_add(cp->bloom,buff);
           cp->bloomCount++;
        }
-       if(cp->bloomCount>(cp->nsets*cp->assoc))
+       if(cp->bloomCount>(2048))
           cp->bloomTrainFlag=0;
     }
   }
