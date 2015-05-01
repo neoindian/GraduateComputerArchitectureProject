@@ -60,7 +60,8 @@
 #include "cache.h"
 
 /* cache prefetch config macro*/
-#define LEARNINTERVAL 4096
+#define LEARNINTERVAL 2048
+#define BLOOMENTRIES  2048
 #define PATTERNS      4
 //int patternOffsets[4]={-4,-2,2,4};
 /* cache access macros */
@@ -310,7 +311,7 @@ cache_create(char *name,		/* name of the cache */
 
   //The number of entries in the bloom filter will be the number of 
   //blocks in the cache
-  if(!(cp->bloom=bloom_create(/*nsets*assoc*/2048, 2, sax_hash, sdbm_hash)))
+  if(!(cp->bloom=bloom_create(/*nsets*assoc*/BLOOMENTRIES, 2, sax_hash, sdbm_hash)))
   {
       fprintf(stderr, "ERROR: Could not create bloom filter\n");
       return EXIT_FAILURE;
@@ -538,7 +539,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
   if(cp->cache_sandbox_prefetch && !(cp->setPattern))
   {
     int x;
-    //int pOff=(pow(2,(cp->prefetchLevel)));
+    //int pOff=-(pow(2,(cp->prefetchLevel/2)));
     int pOff=2;
     for(x=0;x<cp->prefetchLevel;x++)
     {
@@ -632,7 +633,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
         for(i=0;i<cp->prefetchLevel;i++)
         cp->patternRankings[i]=0;
          
-        if(!(cp->bloom=bloom_create(2048, 2, sax_hash, sdbm_hash)))
+        if(!(cp->bloom=bloom_create(BLOOMENTRIES, 2, sax_hash, sdbm_hash)))
         {
            fprintf(stderr, "ERROR: Could not create bloom filter\n");
            return EXIT_FAILURE;
@@ -652,8 +653,11 @@ cache_access(struct cache_t *cp,	/* cache to access */
           bloom_add(cp->bloom,buff);
           cp->bloomCount++;
        }
-       if(cp->bloomCount>(2048))
+       if(cp->bloomCount>=BLOOMENTRIES)
+       {
           cp->bloomTrainFlag=0;
+          cp->learningInterval=0;
+       }
     }
   }
 
@@ -671,20 +675,27 @@ cache_access(struct cache_t *cp,	/* cache to access */
       int i =0;
       for(i=0;i<cp->prefetchLevel;i++)
       {
-        memset(buff,0,512);
         //printf("\nEval PatternOffset %d",cp->patternOffsets[i]);
-        md_addr_t evalAddr=addr+(cp->patternOffsets[i]*cp->bsize);
-        snprintf(buff,512,"%d",evalAddr);
-        if(bloom_check(cp->bloom,buff))
-        {
-          cp->patternRankings[i]+=1;
-          if(cp->patternRankings[i]>maxRank)
+        //int off =cp->patternOffsets[i];
+        //while(off!=0)
+        //{
+          md_addr_t evalAddr=addr+(cp->patternOffsets[i]*cp->bsize);
+          //memset(buff,0,512);
+          //md_addr_t evalAddr=addr+(off*cp->bsize);
+          //if(off>0)off--;
+          //if(off<0)off++;
+          snprintf(buff,512,"%d",evalAddr);
+          if(bloom_check(cp->bloom,buff))
           {
-            prefetchOffset=cp->patternOffsets[i];
-            maxRank=cp->patternRankings[i];
-            //printf("\nMax Rank %d Offset %d",maxRank,prefetchOffset);
+             cp->patternRankings[i]+=1;
+             if(cp->patternRankings[i]>maxRank)
+             {
+               prefetchOffset=cp->patternOffsets[i];
+               maxRank=cp->patternRankings[i];
+               //printf("\nMax Rank %d Offset %d",maxRank,prefetchOffset);
+             }
           }
-        }
+        //}
       }
      }
     //Check if bloom filter needs to be destroyed and recreated
