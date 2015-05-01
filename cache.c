@@ -60,7 +60,7 @@
 #include "cache.h"
 
 /* cache prefetch config macro*/
-#define LEARNINTERVAL 1024
+#define LEARNINTERVAL 4096
 #define PATTERNS      4
 //int patternOffsets[4]={-4,-2,2,4};
 /* cache access macros */
