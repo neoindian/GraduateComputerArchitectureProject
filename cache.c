@@ -316,8 +316,8 @@ cache_create(char *name,		/* name of the cache */
       fprintf(stderr, "ERROR: Could not create bloom filter\n");
       return EXIT_FAILURE;
    }
-   else
-     printf("\nBloom created successfully");
+   //else
+     //printf("\nBloom created successfully");
   cp->bloomCount=0;
   cp->bloomTrainFlag=1;
   cp->learningInterval=0;
@@ -694,6 +694,15 @@ cache_access(struct cache_t *cp,	/* cache to access */
                maxRank=cp->patternRankings[i];
                //printf("\nMax Rank %d Offset %d",maxRank,prefetchOffset);
              }
+             //If the ranks are equal go for the lower offset to reduce the memory b/w
+             else if(cp->patternRankings[i]=maxRank)
+             {
+                if(cp->patternOffsets[i]<prefetchOffset)
+                {
+                   prefetchOffset=cp->patternOffsets[i];
+                   maxRank=cp->patternRankings[i];
+                }
+             }
           }
         //}
       }
@@ -704,7 +713,7 @@ cache_access(struct cache_t *cp,	/* cache to access */
       issuePrefetch=1; 
       numOfPrefetch=abs(prefetchOffset)+1;//account for the normal miss address;
       actualOffset=prefetchOffset;
-      printf("\nThe winning prefetch offset %d",prefetchOffset);
+      //printf("\nThe winning prefetch offset %d",prefetchOffset);
     }
     
    }
@@ -714,15 +723,16 @@ cache_access(struct cache_t *cp,	/* cache to access */
     int i;
     for(i=0;i<numOfPrefetch;i++)
     {
-        if(cp->cache_normal_prefetch) actualOffset=i;
+        actualOffset=i;
+        //if(cp->cache_normal_prefetch) actualOffset=i;
         tagPrefetch[i]=CACHE_TAG(cp,addr+(actualOffset*cp->bsize));   
         setPrefetch[i]=CACHE_SET(cp,addr+(actualOffset*cp->bsize));
         bofsPrefetch[i]=CACHE_BLK(cp,addr+(actualOffset*cp->bsize));
-        if(cp->cache_sandbox_prefetch && issuePrefetch)
+        /*if(cp->cache_sandbox_prefetch && issuePrefetch)
         {
           if(actualOffset<0) actualOffset++;
           if(actualOffset>0) actualOffset--;
-        }
+        }*/
 
     } 
   }
